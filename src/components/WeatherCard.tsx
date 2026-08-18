@@ -66,7 +66,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
 
         // 2. Координаты → текущая погода
         const fRes = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code,wind_speed_10m&timezone=auto`
+          `https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code,wind_speed_10m&wind_speed_unit=ms&timezone=auto`
         );
         const f = await fRes.json();
         if (cancelled) return;
