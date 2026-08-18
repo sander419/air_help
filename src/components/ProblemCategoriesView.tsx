@@ -57,16 +57,16 @@ export const ProblemCategoriesView: React.FC<ProblemCategoriesViewProps> = ({
           </button>
           <div>
             <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 block">
-              26 INCIDENT PROTOCOLS
+              26 СЦЕНАРИЕВ ПРОБЛЕМ
             </span>
             <h1 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-black">
-              ВЫБЕРИТЕ ПРОБЛЕМУ / SCENARIO
+              ВЫБЕРИТЕ ПРОБЛЕМУ
             </h1>
           </div>
         </div>
 
         <span className="text-xs font-mono font-bold bg-black text-white px-2.5 py-1">
-          {filteredProblems.length} READY
+          {filteredProblems.length} ГОТОВО
         </span>
       </div>
 
@@ -166,7 +166,7 @@ export const ProblemCategoriesView: React.FC<ProblemCategoriesViewProps> = ({
                     </span>
 
                     <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-gray-500 group-hover:text-gray-300">
-                      RULE: {problem.source.ruleCode}
+                      ПРАВИЛО: {problem.source.ruleCode}
                     </span>
                   </div>
 

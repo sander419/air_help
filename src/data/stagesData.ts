@@ -54,7 +54,7 @@ export const STAGES_LIST: StageInfo[] = [
   {
     id: 'security',
     order: 3,
-    name: 'Security',
+    name: 'Досмотр',
     nameEn: 'Pre-flight Security Screening',
     locationHint: 'Зона предполётного досмотра (Security Checkpoint)',
     typicalDurationMin: 20,
@@ -104,7 +104,7 @@ export const STAGES_LIST: StageInfo[] = [
   {
     id: 'gate',
     order: 5,
-    name: 'Gate',
+    name: 'Выход на посадку',
     nameEn: 'Departure Gate & Waiting Area',
     locationHint: 'Стерильная зона, сектор выходов на посадку (Gates)',
     typicalDurationMin: 35,

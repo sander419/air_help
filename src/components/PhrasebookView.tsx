@@ -164,7 +164,7 @@ export const PhrasebookView: React.FC<{
           </button>
           <div>
             <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 block">
-              ICAO AIRPORT PHRASEOLOGY
+              ФРАЗЫ ДЛЯ АЭРОПОРТА
             </span>
             <h1 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-black">
               РАЗГОВОРНИК ДЛЯ ПЕРСОНАЛА
@@ -224,7 +224,7 @@ export const PhrasebookView: React.FC<{
                   title="Открыть во весь экран 32px для показа сотруднику"
                 >
                   <Maximize2 className="w-3.5 h-3.5 stroke-[2.5]" />
-                  <span>32PX MODE</span>
+                  <span>КРУПНЫЙ ТЕКСТ</span>
                 </button>
               </div>
 

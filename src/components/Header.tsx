@@ -33,14 +33,14 @@ export const Header: React.FC<HeaderProps> = ({
 
   const getScreenTitle = () => {
     switch (currentScreen) {
-      case 'what_now': return 'WHAT NOW / ЧТО ДЕЛАТЬ';
-      case 'problem_categories': return 'PROBLEM CATEGORIES / ПРОБЛЕМЫ';
-      case 'problem_detail': return 'ACTION PROTOCOL / РЕШЕНИЕ';
-      case 'employee_mode': return 'STAFF VIEW / ДЛЯ СОТРУДНИКА';
-      case 'check_item': return 'ITEM & BATTERY CHECK / ПРОВЕРКА';
-      case 'flight_details': return 'FLIGHT ROUTE / МАРШРУТ';
-      case 'documents_vault': return 'TRAVEL DOCUMENTS / ДОКУМЕНТЫ';
-      case 'phrasebook': return 'KEY PHRASES / РАЗГОВОРНИК';
+      case 'what_now': return 'ЧТО ДЕЛАТЬ';
+      case 'problem_categories': return 'ПРОБЛЕМЫ';
+      case 'problem_detail': return 'РЕШЕНИЕ';
+      case 'employee_mode': return 'ДЛЯ СОТРУДНИКА';
+      case 'check_item': return 'ПРОВЕРКА БАТАРЕЙ';
+      case 'flight_details': return 'МОЙ РЕЙС';
+      case 'documents_vault': return 'ДОКУМЕНТЫ';
+      case 'phrasebook': return 'РАЗГОВОРНИК';
       default: return 'AIRPORT COPILOT';
     }
   };
@@ -52,10 +52,10 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center gap-2 sm:gap-3">
           <div className={`w-2.5 h-2.5 rounded-full ${isOffline ? 'bg-amber-400 animate-pulse' : 'bg-green-500'}`}></div>
           <span>
-            {isOffline ? 'OFFLINE MODE • DATA CACHED' : 'ONLINE • LIVE DATA'}
+            {isOffline ? 'ОФЛАЙН • ДАННЫЕ СОХРАНЕНЫ' : 'ОНЛАЙН • СВЕЖИЕ ДАННЫЕ'}
           </span>
           <span className="hidden sm:inline text-gray-400">
-            [VERIFIED: {lastSyncDate}]
+            [ПРОВЕРЕНО: {lastSyncDate}]
           </span>
         </div>
 
@@ -65,7 +65,7 @@ export const Header: React.FC<HeaderProps> = ({
           className="text-gray-300 hover:text-white border border-gray-700 hover:border-white px-2 py-0.5 flex items-center gap-1.5 transition-colors cursor-pointer text-[10px] uppercase font-bold"
         >
           <RefreshCw className="w-3 h-3" />
-          <span>{isOffline ? 'GO ONLINE' : 'TEST OFFLINE'}</span>
+          <span>{isOffline ? 'В ОНЛАЙН' : 'ТЕСТ ОФЛАЙН'}</span>
         </button>
       </div>
 
@@ -98,7 +98,7 @@ export const Header: React.FC<HeaderProps> = ({
             </h1>
             <div className="flex items-center gap-2 mt-1">
               <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
-                OFFLINE-FIRST • VERIFIED SOURCES
+                ОФЛАЙН-РЕЖИМ • ПРОВЕРЕННЫЕ ИСТОЧНИКИ
               </span>
             </div>
           </div>
@@ -117,7 +117,7 @@ export const Header: React.FC<HeaderProps> = ({
                 : 'bg-white hover:bg-gray-100 text-black'
             }`}
           >
-            WH CHECK
+            ПРОВЕРКА WH
           </button>
         </div>
       </div>

@@ -54,7 +54,7 @@ export const WhatNowView: React.FC<WhatNowViewProps> = ({
           </button>
           <div>
             <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 block">
-              STEP 0{currentStage.order} OF 06
+              ШАГ 0{currentStage.order} ИЗ 06
             </span>
             <h1 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-black">
               {currentStage.name}
@@ -90,11 +90,11 @@ export const WhatNowView: React.FC<WhatNowViewProps> = ({
               <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
             <span className="text-xs font-black uppercase tracking-wider">
-              STAGE DIRECTIVE / ГЛАВНОЕ ДЕЙСТВИЕ
+              ГЛАВНОЕ ДЕЙСТВИЕ
             </span>
           </div>
           <span className="text-xs font-mono font-bold bg-black text-white px-2 py-0.5 uppercase">
-            ~{currentStage.typicalDurationMin} MIN TYPICAL
+            ~{currentStage.typicalDurationMin} МИН ОБЫЧНО
           </span>
         </div>
 
@@ -114,7 +114,7 @@ export const WhatNowView: React.FC<WhatNowViewProps> = ({
             СДЕЛАЙТЕ ЭТИ 3 ШАГА СЕЙЧАС (ПОСЛЕДОВАТЕЛЬНО):
           </span>
           <span className="text-xs font-mono font-bold text-gray-500 uppercase">
-            3 STEPS
+            3 ШАГА
           </span>
         </div>
 
@@ -184,22 +184,22 @@ export const WhatNowView: React.FC<WhatNowViewProps> = ({
       <section className="p-5 border-2 border-black bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[10px] font-black uppercase text-gray-500">DATA SOURCE PROTOCOL</span>
+            <span className="text-[10px] font-black uppercase text-gray-500">ИСТОЧНИК ДАННЫХ</span>
             <span className="text-[10px] font-black uppercase bg-green-100 text-green-800 border border-green-300 px-1.5 py-0.2">
-              HIGH TRUST
+              ВЫСОКОЕ ДОВЕРИЕ
             </span>
           </div>
           <p className="text-xs font-bold uppercase text-black">
-            {currentStage.source.name} • RULE {currentStage.source.ruleCode}
+            {currentStage.source.name} • ПРАВИЛО {currentStage.source.ruleCode}
           </p>
         </div>
 
         <div className="text-right">
           <span className="text-[10px] font-mono text-gray-500 uppercase block">
-            VERIFIED: {currentStage.source.checkedDate}
+            ПРОВЕРЕНО: {currentStage.source.checkedDate}
           </span>
           <span className="text-[10px] font-bold text-gray-700 uppercase block">
-            STATUS: {currentStage.source.confidence}
+            СТАТУС: {currentStage.source.confidence}
           </span>
         </div>
       </section>

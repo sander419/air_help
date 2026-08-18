@@ -4,6 +4,7 @@ import {
   FlightLeg, 
   ActiveScreen 
 } from '../types';
+import { AIRPORT_CITIES, AIRPORT_CODES, findAirportByCity } from '../data/airports';
 import { 
   Plane, 
   ArrowLeft, 
@@ -57,7 +58,8 @@ const Field: React.FC<{
   placeholder?: string;
   uppercase?: boolean;
   narrow?: boolean;
-}> = ({ label, value, onChange, placeholder, uppercase, narrow }) => (
+  list?: string;
+}> = ({ label, value, onChange, placeholder, uppercase, narrow, list }) => (
   <label className="block">
     <span className="text-[10px] font-black uppercase tracking-wider text-gray-500 block mb-1">
       {label}
@@ -67,6 +69,7 @@ const Field: React.FC<{
       value={value}
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
+      list={list}
       className={`w-full px-3 py-2.5 bg-white border-2 border-black text-base font-bold text-black focus:outline-none focus:bg-gray-50 min-h-[48px] ${
         uppercase ? 'uppercase' : ''
       } ${narrow ? 'max-w-[90px] text-center' : ''}`}
@@ -98,6 +101,23 @@ export const FlightDetailsModal: React.FC<FlightDetailsModalProps> = ({
   const updateField = (key: keyof FlightLeg, value: string) => {
     if (!draftLeg) return;
     setDraftLeg({ ...draftLeg, [key]: value });
+  };
+
+  const updateCity = (key: 'from' | 'to', city: string) => {
+    if (!draftLeg) return;
+    const airport = findAirportByCity(city);
+    setDraftLeg((prev) => {
+      if (!prev) return prev;
+      const next = { ...prev };
+      if (key === 'from') {
+        next.fromCity = city;
+        if (airport) next.fromCode = airport.code;
+      } else {
+        next.toCity = city;
+        if (airport) next.toCode = airport.code;
+      }
+      return next;
+    });
   };
 
   const saveEdit = () => {
@@ -152,6 +172,16 @@ export const FlightDetailsModal: React.FC<FlightDetailsModalProps> = ({
 
   return (
     <div id="flight-details-view" className="space-y-6 pb-12">
+      <datalist id="airport-cities">
+        {AIRPORT_CITIES.map((city) => (
+          <option key={city} value={city} />
+        ))}
+      </datalist>
+      <datalist id="airport-codes">
+        {AIRPORT_CODES.map((code) => (
+          <option key={code} value={code} />
+        ))}
+      </datalist>
       
       {/* Top bar */}
       <div className="flex items-center justify-between border-b-2 border-black pb-4">
@@ -215,14 +245,14 @@ export const FlightDetailsModal: React.FC<FlightDetailsModalProps> = ({
                   </div>
 
                   {/* Откуда / Куда */}
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-3">
-                      <Field label="Откуда — город" value={draftLeg.fromCity} onChange={(v) => updateField('fromCity', v)} placeholder="Москва" />
-                      <Field label="Код аэропорта (IATA)" value={draftLeg.fromCode} onChange={(v) => updateField('fromCode', v.toUpperCase())} placeholder="VKO" uppercase narrow />
+                      <Field label="Откуда — город (выберите из списка)" value={draftLeg.fromCity} onChange={(v) => updateCity('from', v)} placeholder="Начните вводить город" list="airport-cities" />
+                      <Field label="Код аэропорта" value={draftLeg.fromCode} onChange={(v) => updateField('fromCode', v.toUpperCase())} placeholder="SVO" uppercase narrow list="airport-codes" />
                     </div>
                     <div className="space-y-3">
-                      <Field label="Куда — город" value={draftLeg.toCity} onChange={(v) => updateField('toCity', v)} placeholder="Стамбул" />
-                      <Field label="Код аэропорта (IATA)" value={draftLeg.toCode} onChange={(v) => updateField('toCode', v.toUpperCase())} placeholder="IST" uppercase narrow />
+                      <Field label="Куда — город (выберите из списка)" value={draftLeg.toCity} onChange={(v) => updateCity('to', v)} placeholder="Начните вводить город" list="airport-cities" />
+                      <Field label="Код аэропорта" value={draftLeg.toCode} onChange={(v) => updateField('toCode', v.toUpperCase())} placeholder="IST" uppercase narrow list="airport-codes" />
                     </div>
                   </div>
 
@@ -235,7 +265,7 @@ export const FlightDetailsModal: React.FC<FlightDetailsModalProps> = ({
                   </div>
 
                   {/* Терминал / Гейт / Место */}
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <Field label="Терминал" value={draftLeg.terminal} onChange={(v) => updateField('terminal', v)} placeholder="Terminal A" />
                     <Field label="Гейт" value={draftLeg.gate} onChange={(v) => updateField('gate', v)} placeholder="22B" />
                     <Field label="Место" value={draftLeg.seat} onChange={(v) => updateField('seat', v.toUpperCase())} placeholder="14A" uppercase />

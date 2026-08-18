@@ -80,12 +80,12 @@ export const EmployeeModeView: React.FC<EmployeeModeViewProps> = ({
           className="px-4 py-2 bg-black text-white font-black text-sm uppercase flex items-center gap-2 hover:bg-gray-800 transition-colors cursor-pointer min-h-[48px]"
         >
           <ArrowLeft className="w-5 h-5 stroke-[3]" />
-          <span>НАЗАД / CLOSE</span>
+          <span>НАЗАД</span>
         </button>
 
         <div className="text-right">
           <span className="text-xs font-black uppercase tracking-widest text-gray-500 block">
-            PASSENGER ASSISTANCE MODE
+            РЕЖИМ ПОМОЩИ ПАССАЖИРУ
           </span>
           <span className="text-sm font-mono font-bold text-black uppercase">
             PNR: {itinerary.pnr} • FLIGHT {currentLeg.flightNumber}
@@ -96,7 +96,7 @@ export const EmployeeModeView: React.FC<EmployeeModeViewProps> = ({
       {/* 2. MAIN 32PX ENGLISH PHRASE DISPLAY */}
       <div className="my-auto py-8 space-y-6 max-w-4xl">
         <div className="inline-block px-3 py-1 bg-black text-white font-mono font-bold text-xs uppercase tracking-widest">
-          SHOW THIS SCREEN TO AIRPORT STAFF:
+          ПОКАЖИТЕ ЭТОТ ЭКРАН СОТРУДНИКУ:
         </div>
 
         {/* 32px Bold High-Contrast Text */}
@@ -137,12 +137,12 @@ export const EmployeeModeView: React.FC<EmployeeModeViewProps> = ({
               {isSpeaking ? (
                 <>
                   <VolumeX className="w-6 h-6 stroke-[3]" />
-                  <span>STOP AUDIO / ОСТАНОВИТЬ</span>
+                  <span>ОСТАНОВИТЬ</span>
                 </>
               ) : (
                 <>
                   <Volume2 className="w-6 h-6 stroke-[3]" />
-                  <span>PLAY VOICE AUDIO / ОЗВУЧИТЬ</span>
+                  <span>ОЗВУЧИТЬ</span>
                 </>
               )}
             </button>
@@ -157,12 +157,12 @@ export const EmployeeModeView: React.FC<EmployeeModeViewProps> = ({
             {isCopied ? (
               <>
                 <Check className="w-6 h-6 text-green-600 stroke-[3]" />
-                <span>COPIED TO CLIPBOARD!</span>
+                <span>СКОПИРОВАНО!</span>
               </>
             ) : (
               <>
                 <Copy className="w-6 h-6 stroke-[3]" />
-                <span>COPY TEXT / СКОПИРОВАТЬ</span>
+                <span>СКОПИРОВАТЬ</span>
               </>
             )}
           </button>
@@ -170,10 +170,10 @@ export const EmployeeModeView: React.FC<EmployeeModeViewProps> = ({
 
         {/* Flight Context Metadata Strip */}
         <div className="flex flex-wrap items-center justify-between text-[11px] font-mono font-bold uppercase text-gray-600">
-          <span>PASSENGER: {itinerary.passengerName}</span>
-          <span>AIRLINE: {currentLeg.airline} ({currentLeg.flightNumber})</span>
-          <span>ROUTE: {currentLeg.fromCode} → {currentLeg.toCode}</span>
-          <span>GATE: {currentLeg.gate}</span>
+          <span>ПАССАЖИР: {itinerary.passengerName}</span>
+          <span>АВИАКОМПАНИЯ: {currentLeg.airline} ({currentLeg.flightNumber})</span>
+          <span>МАРШРУТ: {currentLeg.fromCode} → {currentLeg.toCode}</span>
+          <span>ГЕЙТ: {currentLeg.gate}</span>
         </div>
       </div>
     </div>

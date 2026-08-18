@@ -77,7 +77,7 @@ export const CheckItemView: React.FC<CheckItemViewProps> = ({ onNavigate }) => {
           </button>
           <div>
             <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 block">
-              ICAO / FAA AIRLINE SECURITY RULES
+              ПРАВИЛА ДОСМОТРА (ICAO / FAA)
             </span>
             <h1 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-black">
               ПРОВЕРКА ПРЕДМЕТОВ И БАТАРЕЙ
@@ -183,7 +183,7 @@ export const CheckItemView: React.FC<CheckItemViewProps> = ({ onNavigate }) => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-black/20 pb-4">
             <div>
               <span className="text-[10px] font-mono font-black uppercase tracking-widest bg-black text-white px-2 py-0.5">
-                VERDICT PROTOCOL
+                ВЕРДИКТ
               </span>
               <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight mt-1.5 leading-tight">
                 {batteryResult.verdictTitle}
@@ -193,7 +193,7 @@ export const CheckItemView: React.FC<CheckItemViewProps> = ({ onNavigate }) => {
             {/* Big Computed Wh Number */}
             <div className="bg-black text-white p-4 border-2 border-black text-left sm:text-right shrink-0">
               <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 block">
-                COMPUTED POWER
+                РАССЧИТАНО
               </span>
               <span className="text-4xl sm:text-5xl font-black tabular-nums">
                 {batteryResult.wh} <span className="text-xl font-bold">Wh</span>
@@ -205,7 +205,7 @@ export const CheckItemView: React.FC<CheckItemViewProps> = ({ onNavigate }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="p-4 border-2 border-black bg-white space-y-1">
               <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 block">
-                CARRY-ON / РУЧНАЯ КЛАДЬ
+                РУЧНАЯ КЛАДЬ
               </span>
               <p className="text-sm font-bold text-black">{batteryResult.carryOnRule}</p>
               <p className="text-xs font-mono font-bold text-gray-600 mt-1">Лимит: {batteryResult.maxQuantity}</p>
@@ -213,7 +213,7 @@ export const CheckItemView: React.FC<CheckItemViewProps> = ({ onNavigate }) => {
 
             <div className="p-4 border-2 border-black bg-white space-y-1">
               <span className="text-[10px] font-black uppercase tracking-widest text-red-600 block">
-                CHECKED BAGGAGE / СДАННЫЙ БАГАЖ
+                СДАННЫЙ БАГАЖ
               </span>
               <p className="text-sm font-black text-red-600">{batteryResult.checkedRule}</p>
             </div>
@@ -235,7 +235,7 @@ export const CheckItemView: React.FC<CheckItemViewProps> = ({ onNavigate }) => {
             БАЗА ПРАВИЛ ДЛЯ ДРУГИХ ПРЕДМЕТОВ
           </h2>
           <span className="text-xs font-mono font-bold text-gray-500 uppercase">
-            {filteredItems.length} ITEMS
+            {filteredItems.length} ПРЕДМЕТОВ
           </span>
         </div>
 

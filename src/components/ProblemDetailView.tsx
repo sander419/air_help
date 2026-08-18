@@ -57,7 +57,7 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
           </button>
           <div>
             <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 block">
-              INCIDENT RESPONSE PROTOCOL
+              ПЛАН ДЕЙСТВИЙ
             </span>
             <h1 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-black">
               {problem.title}
@@ -83,7 +83,7 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
             СДЕЛАЙТЕ ЭТИ 3 ВЕЩИ ПРЯМО СЕЙЧАС:
           </span>
           <span className="text-xs font-mono font-bold text-gray-500 uppercase">
-            SEQUENCE
+            ПОСЛЕДОВАТЕЛЬНО
           </span>
         </div>
 
@@ -126,10 +126,10 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
       <section className="bg-black text-white p-6 sm:p-8 border-2 border-black space-y-4">
         <div className="flex items-center justify-between">
           <span className="text-xs font-mono font-bold tracking-widest text-gray-400 uppercase">
-            COMMUNICATION PROTOCOL
+            ОБЩЕНИЕ С ПЕРСОНАЛОМ
           </span>
           <span className="text-[10px] font-black uppercase bg-white text-black px-2 py-0.5">
-            HIGH CONTRAST 32PX MODE
+            РЕЖИМ КРУПНОГО ТЕКСТА 32PX
           </span>
         </div>
 
@@ -171,7 +171,7 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
         >
           <div>
             <span className="text-[10px] font-black uppercase text-gray-500 block">
-              LEGAL ENTITLEMENTS & RECOMPENSE
+              ПРАВА И КОМПЕНСАЦИИ
             </span>
             <span className="text-base font-black uppercase text-black">
               {problem.nextActions.title}
@@ -198,9 +198,9 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
       <section className="p-5 border-2 border-black bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[10px] font-black uppercase text-gray-500">OFFICIAL LEGAL SOURCE</span>
+            <span className="text-[10px] font-black uppercase text-gray-500">ОФИЦИАЛЬНЫЙ ИСТОЧНИК</span>
             <span className="text-[10px] font-black uppercase bg-green-100 text-green-800 border border-green-300 px-1.5 py-0.2">
-              HIGH TRUST
+              ВЫСОКОЕ ДОВЕРИЕ
             </span>
           </div>
           <p className="text-xs font-bold uppercase text-black">
@@ -210,7 +210,7 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
 
         <div className="text-right">
           <span className="text-[10px] font-mono text-gray-500 uppercase block">
-            VERIFIED: {problem.source.checkedDate}
+            ПРОВЕРЕНО: {problem.source.checkedDate}
           </span>
           <span className="text-[10px] font-bold text-gray-700 uppercase block">
             {problem.source.confidenceLevel}

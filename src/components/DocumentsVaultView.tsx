@@ -70,7 +70,7 @@ export const DocumentsVaultView: React.FC<{ onNavigate: (screen: ActiveScreen) =
           </button>
           <div>
             <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 block">
-              BORDER & BOARDING READINESS
+              ГОТОВНОСТЬ К КОНТРОЛЮ
             </span>
             <h1 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-black">
               ЧЕК-ЛИСТ ДОКУМЕНТОВ
@@ -79,7 +79,7 @@ export const DocumentsVaultView: React.FC<{ onNavigate: (screen: ActiveScreen) =
         </div>
 
         <span className="text-xs font-mono font-bold bg-black text-white px-2.5 py-1">
-          {docs.filter(d => d.checked).length}/{docs.length} READY
+          {docs.filter(d => d.checked).length}/{docs.length} ГОТОВО
         </span>
       </div>
 
@@ -91,10 +91,10 @@ export const DocumentsVaultView: React.FC<{ onNavigate: (screen: ActiveScreen) =
       }`}>
         <div className="flex items-center justify-between">
           <span className="text-[10px] font-mono font-black uppercase tracking-widest bg-black text-white px-2 py-0.5">
-            STATUS PROTOCOL
+            СТАТУС
           </span>
           <span className="text-xs font-mono font-bold uppercase">
-            {allChecked ? 'ALL REQUIRED PASSED' : 'ACTION NEEDED'}
+            {allChecked ? 'ВСЁ ОБЯЗАТЕЛЬНОЕ ГОТОВО' : 'ТРЕБУЕТСЯ ДЕЙСТВИЕ'}
           </span>
         </div>
 
@@ -128,7 +128,7 @@ export const DocumentsVaultView: React.FC<{ onNavigate: (screen: ActiveScreen) =
                   </h3>
                   {doc.required && (
                     <span className="text-[10px] font-mono font-black uppercase bg-black text-white px-1.5 py-0.2">
-                      REQUIRED
+                      ОБЯЗАТЕЛЬНО
                     </span>
                   )}
                 </div>
@@ -139,7 +139,7 @@ export const DocumentsVaultView: React.FC<{ onNavigate: (screen: ActiveScreen) =
             <span className={`text-[10px] font-mono font-black uppercase px-2 py-1 border shrink-0 ${
               doc.checked ? 'bg-black text-white border-black' : 'bg-gray-100 text-black border-black'
             }`}>
-              {doc.checked ? 'CONFIRMED' : 'UNCHECKED'}
+              {doc.checked ? 'ПОДТВЕРЖДЕНО' : 'НЕ ПРОВЕРЕНО'}
             </span>
           </div>
         ))}
