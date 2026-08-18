@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { StageId, StageInfo, FlightItinerary, ActiveScreen } from '../types';
 import { STAGES_LIST } from '../data/stagesData';
+import { WeatherCard } from './WeatherCard';
 
 interface DashboardViewProps {
   itinerary: FlightItinerary;
@@ -148,6 +149,9 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </div>
         </div>
       </section>
+
+      {/* ПОГОДА В ПУНКТЕ НАЗНАЧЕНИЯ */}
+      <WeatherCard city={currentLeg.toCity} />
 
       {/* 3. ДВЕ ГЛАВНЫЕ КНОПКИ */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
