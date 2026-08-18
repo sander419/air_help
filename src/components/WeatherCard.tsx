@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useWeatherWithCache } from '../hooks/useWeatherWithCache';
 
 // WMO weather codes → русский текст (Open-Meteo)
 const WEATHER_CODES: Record<number, string> = {
@@ -31,10 +32,11 @@ const WEATHER_CODES: Record<number, string> = {
 };
 
 interface WeatherState {
-  temp: number;
-  desc: string;
-  wind: number;
-  time: string;
+  temperature: number;
+  description: string;
+  windSpeedMs: number;
+  timezoneOffset: number;
+  updatedAt: number;
 }
 
 interface WeatherCardProps {
@@ -42,58 +44,13 @@ interface WeatherCardProps {
 }
 
 export const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
-  const [weather, setWeather] = useState<WeatherState | null>(null);
-  const [status, setStatus] = useState<'loading' | 'ok' | 'error'>('loading');
-
-  useEffect(() => {
-    if (!city || city === '—') {
-      setStatus('error');
-      return;
-    }
-    let cancelled = false;
-    setStatus('loading');
-    setWeather(null);
-
-    async function load() {
-      try {
-        // 1. Город → координаты (бесплатный geocoding Open-Meteo)
-        const geoRes = await fetch(
-          `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=ru&format=json`
-        );
-        const geo = await geoRes.json();
-        const loc = geo.results?.[0];
-        if (!loc) throw new Error('city not found');
-
-        // 2. Координаты → текущая погода
-        const fRes = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code,wind_speed_10m&wind_speed_unit=ms&timezone=auto`
-        );
-        const f = await fRes.json();
-        if (cancelled) return;
-        const cur = f.current;
-        setWeather({
-          temp: Math.round(cur.temperature_2m),
-          desc: WEATHER_CODES[cur.weather_code] ?? '—',
-          wind: Math.round(cur.wind_speed_10m),
-          time: f.timezone_abbreviation || ''
-        });
-        setStatus('ok');
-      } catch {
-        if (!cancelled) setStatus('error');
-      }
-    }
-
-    load();
-    return () => {
-      cancelled = true;
-    };
-  }, [city]);
+  const { data, loading, error } = useWeatherWithCache(city);
 
   return (
     <div className="bg-white border-2 border-black p-5 flex items-center justify-between gap-4">
       <div className="flex items-center gap-3 min-w-0">
         <div className="w-12 h-12 border-2 border-black flex items-center justify-center text-2xl shrink-0">
-          {status === 'ok' ? '🌤️' : '🌡️'}
+          {loading ? '🔄' : error ? '❌' : data ? '🌤️' : '🌡️'}
         </div>
         <div className="min-w-0">
           <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 block">
@@ -106,23 +63,23 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
       </div>
 
       <div className="text-right shrink-0">
-        {status === 'loading' && (
+        {loading && (
           <span className="text-sm font-bold text-gray-500 uppercase">Загрузка…</span>
         )}
-        {status === 'error' && (
+        {error && (
           <span className="text-sm font-bold text-gray-500 uppercase">Нет данных (офлайн)</span>
         )}
-        {status === 'ok' && weather && (
+        {data && (
           <div className="flex items-center gap-3">
             <div className="text-3xl font-black tabular-nums text-black leading-none">
-              {weather.temp}°
+              {data.temperature}°
             </div>
             <div className="text-right">
               <span className="text-sm font-black uppercase text-black block leading-tight">
-                {weather.desc}
+                {data.description}
               </span>
               <span className="text-[10px] font-mono font-bold text-gray-500 block">
-                ветер {weather.wind} м/с{weather.time ? ` • ${weather.time}` : ''}
+                ветер {data.windSpeedMs} м/с{data.timezoneOffset ? ` • UTC${data.timezoneOffset >= 0 ? '+' : ''}${data.timezoneOffset / 3600}` : ''}
               </span>
             </div>
           </div>

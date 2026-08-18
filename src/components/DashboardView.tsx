@@ -9,6 +9,8 @@ import {
 import { StageId, StageInfo, FlightItinerary, ActiveScreen } from '../types';
 import { STAGES_LIST } from '../data/stagesData';
 import { WeatherCard } from './WeatherCard';
+import { useCountdown } from '../hooks/useCountdown';
+import { useWeatherWithCache } from '../hooks/useWeatherWithCache';
 
 interface DashboardViewProps {
   itinerary: FlightItinerary;
@@ -93,7 +95,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               ДО ВЫЛЕТА
             </span>
             <div className="text-4xl sm:text-6xl font-black tabular-nums tracking-tighter text-black">
-              02:40
+              {useCountdown(currentLeg.departureTime)}
             </div>
             <span className="text-xs font-mono font-bold text-gray-600 block mt-1">
               ПО РАСПИСАНИЮ: {currentLeg.departureTime || '—'}

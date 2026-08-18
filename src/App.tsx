@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import { useLocalStorage } from './hooks/useLocalStorage';
 import { 
   StageId, 
   ProblemItem, 
@@ -45,8 +46,8 @@ export default function App() {
   // Selected Problem
   const [selectedProblem, setSelectedProblem] = useState<ProblemItem | null>(null);
 
-  // Flight Itinerary
-  const [itinerary, setItinerary] = useState<FlightItinerary>(INITIAL_ITINERARY);
+  // Flight Itinerary (persisted in localStorage)
+  const [itinerary, setItinerary] = useLocalStorage<FlightItinerary>('airport-copilot-itinerary', INITIAL_ITINERARY);
 
   // Offline-First status
   const [isOffline, setIsOffline] = useState<boolean>(false);
