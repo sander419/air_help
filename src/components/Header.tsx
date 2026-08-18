@@ -7,7 +7,7 @@ import {
   User,
   ShieldCheck
 } from 'lucide-react';
-import { ActiveScreen } from '../types';
+import { ActiveScreen, FlightItinerary } from '../types';
 
 interface HeaderProps {
   currentScreen: ActiveScreen;
@@ -15,6 +15,7 @@ interface HeaderProps {
   isOffline: boolean;
   onToggleOffline: () => void;
   lastSyncDate: string;
+  itinerary: FlightItinerary;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -22,9 +23,13 @@ export const Header: React.FC<HeaderProps> = ({
   onNavigate,
   isOffline,
   onToggleOffline,
-  lastSyncDate
+  lastSyncDate,
+  itinerary
 }) => {
   const isDashboard = currentScreen === 'dashboard';
+  const routeCodes = [...itinerary.legs.map((l) => l.fromCode), itinerary.legs[itinerary.legs.length - 1]?.toCode]
+    .filter(Boolean)
+    .join(' / ');
 
   const getScreenTitle = () => {
     switch (currentScreen) {
@@ -101,7 +106,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         <div className="flex items-center gap-2 sm:gap-3">
           <div className="hidden md:flex px-3.5 py-1.5 border-2 border-black font-bold text-xs uppercase bg-white">
-            <span>SVO / IST / BER</span>
+            <span>{routeCodes || '—'}</span>
           </div>
 
           <button

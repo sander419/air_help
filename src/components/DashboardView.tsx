@@ -12,7 +12,8 @@ import {
   MapPin, 
   Languages,
   ShieldCheck,
-  Plane
+  Plane,
+  Edit3
 } from 'lucide-react';
 import { StageId, StageInfo, FlightItinerary, ActiveScreen } from '../types';
 import { STAGES_LIST } from '../data/stagesData';
@@ -54,9 +55,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               </span>
               <button
                 onClick={onOpenLegSwitcher}
-                className="px-2.5 py-0.5 border border-black font-mono font-bold text-[10px] uppercase bg-gray-100 hover:bg-black hover:text-white transition-colors cursor-pointer"
+                className="px-3 py-1.5 border-2 border-black font-black text-xs uppercase bg-white hover:bg-black hover:text-white transition-colors cursor-pointer flex items-center gap-1.5"
               >
-                LEG {itinerary.currentLegIndex + 1}/{itinerary.legs.length} • SWITCH
+                <Edit3 className="w-4 h-4 stroke-[2.5]" />
+                Изменить рейс
               </button>
             </div>
 

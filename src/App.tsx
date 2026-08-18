@@ -116,6 +116,7 @@ export default function App() {
               isOffline={isOffline}
               onToggleOffline={handleToggleOffline}
               lastSyncDate={lastSyncDate}
+              itinerary={itinerary}
             />
           )}
 
